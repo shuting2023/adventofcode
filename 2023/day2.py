@@ -1,34 +1,27 @@
 import re
-filepath = 'assets/Q2_2023.txt'
+filepath = 'assets/day2.txt'
 
-def Q2_p1(filepath):
-    dic = {'red':12, 'green':13, 'blue':14}
+f = open(filepath,'r')
+lines = f.readlines()
 
-    impossible = 0
-    total = 0
-    with open(filepath,'r') as file:
-        for line in file.readlines():
-            verify = 0
-            total += int(re.findall('(\d+):',line)[0])
-            for key in dic:
-                num_ball = [int(x) for x in re.findall('(\d+)\s'+key,line)]       
-                [verify:= verify + 1 for n in num_ball if n > dic[key]]
-                if verify > 0:
-                    impossible += int(re.findall('(\d+):',line)[0])
-                    break
-    return total - impossible
+sum_possible = 0
+sum_power = 0
+for line in lines:
+    line = line.split(':')
+    game,subsets = line
+    game_num = int(re.findall('\d+',game)[0])
 
-def Q2_p2(filepath):
-    color_lst = ['blue', 'green', 'red']
-    result= 0
-    with open(filepath,'r') as file:
-        for line in file.readlines():
-            power = 1
-            for c in color_lst:
-                color = max([int(x) for x in re.findall('(\d+)\s'+c,line)])
-                power *= color
-            result += power 
-    return result 
+    if max([int(x) for x in re.findall('(\d+)\sred',subsets)]) <= 12 and\
+    max([int(x) for x in re.findall('(\d+)\sgreen',subsets)]) <= 13 and \
+    max([int(x) for x in re.findall('(\d+)\sblue',subsets)]) <= 14:
+        sum_possible += game_num
 
-print(Q2_p1(filepath))
-print(Q2_p2(filepath))
+    power = max([int(x) for x in re.findall('(\d+)\sred',subsets)]) * \
+    max([int(x) for x in re.findall('(\d+)\sgreen',subsets)])* \
+    max([int(x) for x in re.findall('(\d+)\sblue',subsets)])
+
+    sum_power += power
+
+
+print('part1:',sum_possible)
+print('part2:',sum_power)
