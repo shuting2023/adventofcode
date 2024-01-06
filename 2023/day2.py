@@ -11,15 +11,10 @@ for line in lines:
     game,subsets = line
     game_num = int(re.findall('\d+',game)[0])
 
-    if max([int(x) for x in re.findall('(\d+)\sred',subsets)]) <= 12 and\
-    max([int(x) for x in re.findall('(\d+)\sgreen',subsets)]) <= 13 and \
-    max([int(x) for x in re.findall('(\d+)\sblue',subsets)]) <= 14:
+    if max([int(x) for x in re.findall('(\d+)\sred',subsets)]) <= 12 and max([int(x) for x in re.findall('(\d+)\sgreen',subsets)]) <= 13 and max([int(x) for x in re.findall('(\d+)\sblue',subsets)]) <= 14:
         sum_possible += game_num
 
-    power = max([int(x) for x in re.findall('(\d+)\sred',subsets)]) * \
-    max([int(x) for x in re.findall('(\d+)\sgreen',subsets)])* \
-    max([int(x) for x in re.findall('(\d+)\sblue',subsets)])
-
+    power = max([int(x) for x in re.findall('(\d+)\sred',subsets)]) * max([int(x) for x in re.findall('(\d+)\sgreen',subsets)])* max([int(x) for x in re.findall('(\d+)\sblue',subsets)])
     sum_power += power
 
 
