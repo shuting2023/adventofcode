@@ -1,4 +1,5 @@
 import re
+import numpy as np
 filepath = 'assets/day2.txt'
 
 f = open(filepath,'r')
@@ -14,7 +15,7 @@ for line in lines:
     if max([int(x) for x in re.findall('(\d+)\sred',subsets)]) <= 12 and max([int(x) for x in re.findall('(\d+)\sgreen',subsets)]) <= 13 and max([int(x) for x in re.findall('(\d+)\sblue',subsets)]) <= 14:
         sum_possible += game_num
 
-    power = max([int(x) for x in re.findall('(\d+)\sred',subsets)]) * max([int(x) for x in re.findall('(\d+)\sgreen',subsets)])* max([int(x) for x in re.findall('(\d+)\sblue',subsets)])
+    power = np.prod([max([int(x) for x in re.findall('(\d+)\s'+col,subsets)]) for col in ['red','green','blue']])
     sum_power += power
 
 
