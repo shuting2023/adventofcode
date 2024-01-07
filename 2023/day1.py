@@ -5,8 +5,6 @@ f = open(filepath, 'r')
 lines = f.readlines()
 
 cali = [int(re.findall('\d',line)[0]+re.findall('\d',line)[-1]) for line in lines]
-print('part1:', sum(cali))
-
 
 num_str = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight','nine']
 num_tuple = [x for x in enumerate(num_str)]
@@ -24,4 +22,4 @@ for line in lines:
             num_join += (x)
     new_cali.append(int(''.join(num_join)))
 
-print('part2:', sum(new_cali))
+print('part1:', sum(cali),'part2:', sum(new_cali))
