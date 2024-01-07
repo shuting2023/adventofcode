@@ -18,6 +18,4 @@ for line in lines:
     power = np.prod([max([int(x) for x in re.findall('(\d+)\s'+col,subsets)]) for col in ['red','green','blue']])
     sum_power += power
 
-
-print('part1:',sum_possible)
-print('part2:',sum_power)
+print('part1:',sum_possible,'part2:',sum_power)
